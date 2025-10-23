@@ -1,7 +1,8 @@
-const express = require("express");
-const router = express.Router();
+import {Router, Request, Response} from "express";
 
-router.get("/", (req, res) => {
+const router = Router();
+
+router.get("/", (req: Request, res: Response) => {
     res.send(`
     <html>
       <head>
@@ -14,4 +15,4 @@ router.get("/", (req, res) => {
   `);
 });
 
-module.exports = router;
+export default router;
