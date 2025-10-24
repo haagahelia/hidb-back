@@ -8,7 +8,7 @@ services:
     ports:
       - "${DB_PORT}:3306" #this cannot be changed as it is the docker container number
     volumes:
-      #- ./Database/SQL_Scripts/000__CreateALLdb.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/SQL-scripts/000__CreateALLdb.sql:/docker-entrypoint-initdb.d/init.sql
       - mariadb_data:/var/lib/mysql
 
 volumes:
