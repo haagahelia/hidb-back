@@ -1,5 +1,14 @@
+/* This script is added to docker-compose-db.yaml for automatic initialization whenever docker is set up */
 USE casedb; 
-/* --- 01 CREATE TABLES --- */
+
+DROP TABLE IF EXISTS Aircraft;
+DROP TABLE IF EXISTS Organization;
+
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+/* -------------------------- END --------------------------- */
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
 
 CREATE TABLE IF NOT EXISTS Aircraft (
     id INT NOT NULL AUTO_INCREMENT,
