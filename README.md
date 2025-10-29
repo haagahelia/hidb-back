@@ -1,6 +1,8 @@
 # hidb-back — Backend setup & DB initialization
 
 Short guide to start the backend and initialize the MariaDB database using Docker 
+## Deployment Link
+https://hidb-back-git-sdp-2-aviation-museum.2.rahtiapp.fi
 
 ## Prerequisites
 - Docker & Docker Compose
