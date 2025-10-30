@@ -70,10 +70,7 @@ If logs show SQL execution, the DB is initialized.
 npm run build
 npm start
 ```
-
-- Or run TypeScript directly
+- If you want to use Nodemon for hot-reload then use
 ```bash
 npm run dev
-# or
-npm start 
 ```
