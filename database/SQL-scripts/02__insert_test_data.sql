@@ -8,7 +8,7 @@ INSERT INTO Aircraft (name, manufacturer, model, year_built, weight, aircraft_ty
 ('CRJ900', 'Bombardier', 'CRJ900', 2003, 37000.00, 'Regional', 3, 'Regional', NULL);
 
 /* --- Insert: Organization --- */
-INSERT INTO Organization (name, type, country, founding_year,  logo_url) VALUES
+INSERT INTO Organization (name, type, country, founding_year, logo_url) VALUES
 ('NASA', 'other', 'USA', 1958, NULL),
 ('Boeing', 'other', 'USA', 1916, NULL),
 ('Airbus', 'other', 'France', 1970, NULL);
