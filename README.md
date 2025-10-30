@@ -60,11 +60,7 @@ If logs show SQL execution, the DB is initialized.
     ```
 
 ## Start the backend
-- Remember to start database first
-    ```bash
-    docker compose -f docker-compose-db.yaml up -d
-    ```
-
+- **Note:** The database must be running before starting the backend. If you haven't already, follow the steps above to start the database.
 - Build & start:
 ```bash
 npm run build
