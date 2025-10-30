@@ -53,8 +53,17 @@ docker compose -f docker-compose-db.yaml logs -f mariadb_service
 ```
 If logs show SQL execution, the DB is initialized.
 
+## Start the db after it has been initialized 
+- At this phase of the development, we have the database on docker, and it needs to be run first for backend's endpoints to work
+    ```bash
+    docker compose -f docker-compose-db.yaml up -d
+    ```
 
 ## Start the backend
+- Remember to start database first
+    ```bash
+    docker compose -f docker-compose-db.yaml up -d
+    ```
 
 - Build & start:
 ```bash
