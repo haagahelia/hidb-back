@@ -53,18 +53,20 @@ docker compose -f docker-compose-db.yaml logs -f mariadb_service
 ```
 If logs show SQL execution, the DB is initialized.
 
+## Start the db after it has been initialized 
+- At this phase of the development, we have the database on docker, and it needs to be run first for backend's endpoints to work
+    ```bash
+    docker compose -f docker-compose-db.yaml up -d
+    ```
 
 ## Start the backend
-
+- **Note:** The database must be running before starting the backend. If you haven't already, follow the steps above to start the database.
 - Build & start:
 ```bash
 npm run build
 npm start
 ```
-
-- Or run TypeScript directly
+- If you want to use Nodemon for hot-reload then use
 ```bash
 npm run dev
-# or
-npm start 
 ```
