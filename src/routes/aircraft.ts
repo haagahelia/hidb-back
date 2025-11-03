@@ -3,23 +3,23 @@ import aircraftService from "../services/AircraftService";
 
 const router = Router();
 
-// GET /aircraft - Get all aircrafts from database
+// GET /aircraft - Get all aircraft from database
 router.get("/aircraft", async (req: Request, res: Response) => {
     try {
-        const aircrafts = await aircraftService.getAllAircrafts();
+        const aircraft = await aircraftService.getAllAircraft();
         
         res.status(200).json({
             success: true,
-            message: "Aircrafts retrieved successfully",
-            data: aircrafts,
-            count: aircrafts.length
+            message: "Aircraft retrieved successfully",
+            data: aircraft,
+            count: aircraft.length
         });
         
     } catch (error) {
-        console.error('Error fetching aircrafts:', error);
+        console.error('Error fetching aircraft:', error);
         res.status(500).json({
             success: false,
-            message: "Error retrieving aircrafts from database",
+            message: "Error retrieving aircraft from database",
             error: process.env.NODE_ENV === 'development' ? error : {}
         });
     }

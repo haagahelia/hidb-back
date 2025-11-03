@@ -5,17 +5,17 @@ export class AircraftService {
     private readonly tableName = 'Aircraft';
 
     /**
-     * Get all aircrafts from the database using Knex
+     * Get all aircraft from the database using Knex
      */
-    async getAllAircrafts(): Promise<Aircraft[]> {
+    async getAllAircraft(): Promise<Aircraft[]> {
         try {
-            const aircrafts = await db(this.tableName)
+            const aircraft = await db(this.tableName)
                 .select('*')
                 .orderBy('id', 'asc');
             
-            return aircrafts;
+            return aircraft;
         } catch (error) {
-            throw new Error(`Error fetching aircrafts: ${error}`);
+            throw new Error(`Error fetching aircraft: ${error}`);
         }
     }
 
