@@ -33,7 +33,7 @@ INSERT INTO Aircraft (
 ) VALUES
     ('A320',  'Airbus',     'A320-200', 1998, 73500.00, 1, 2, 150, 'commercial', NULL, NULL, NULL, 'A popular short-haul airliner.', 'on display'),
     ('B737',  'Boeing',     '737-800',  2005, 79015.00, 2, 2, 160, 'commercial', NULL, NULL, NULL, 'A widely used medium-range airliner.', 'in storage'),
-    ('CRJ900','Bombardier', 'CRJ900',   2003, 37000.00, 3, 2, 90,  'cargo',      3,    NULL, NULL, 'An ol regional jet with a capacity of 90 passengers, later modified into a cargo plane.', 'in storage');
+    ('CRJ900','Bombardier', 'CRJ900',   2003, 37000.00, 3, 2, 90,  'cargo',      NULL, NULL, NULL, 'An ol regional jet with a capacity of 90 passengers, later modified into a cargo plane.', 'in storage');
 
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
