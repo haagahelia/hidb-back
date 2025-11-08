@@ -2,9 +2,9 @@
 
 USE casedb;
 
-DROP TABLE IF EXISTS Organization;
-DROP TABLE IF EXISTS Aircraft;
 DROP TABLE IF EXISTS Media;
+DROP TABLE IF EXISTS Aircraft;
+DROP TABLE IF EXISTS Organization;
 
 /* ---------------------------------------------------------- */
 /* --- 01 CREATE TABLES ------------------------------------- */
