@@ -7,4 +7,7 @@ app.listen(PORT, () => {
     console.log(`📡 API endpoints available at:`);
     console.log(`   - GET http://localhost:${PORT}/api/aircraft`);
     console.log(`   - GET http://localhost:${PORT}/api/aircraft/:id`);
+    console.log(`   - GET http://localhost:${PORT}/api/organizations`);
+    console.log(`   - GET http://localhost:${PORT}/api/organizations/:id`);
+
 });
