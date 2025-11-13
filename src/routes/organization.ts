@@ -1,31 +1,14 @@
 import {Router, Request, Response} from "express";
 import organizationService from "../services/OrganizationService";
+import {validateOrganizationId} from "../validationHandler/organization";
+import { validateRequest } from "../validationHandler";
 
 const router = Router();
-
-// GET /organizations - Get all organizations from database
-router.get("/organizations", async (req: Request, res: Response) => {
-    try {
-        const organizations = await organizationService.getAllOrganizations();
-
-        res.status(200).json({
-            success: true,
-            message: "Organizations retrieved successfully",
-            data: organizations,
-            count: organizations.length,
-        });
-    } catch (error) {
-        console.error("Error fetching organizations:", error);
-        res.status(500).json({
-            success: false,
-            message: "Error retrieving organizations from database",
-            error: process.env.NODE_ENV === "development" ? error : {},
-        });
-    }
-});
-
 // GET /organizations/:id - Get specific organization by ID
-router.get("/organizations/:id", async (req: Request, res: Response) => {
+router.get("/organizations/:id",
+    validateOrganizationId,
+    validateRequest,
+    async (req: Request, res: Response) => {
     try {
         const organizationId = parseInt(req.params.id);
 
@@ -55,6 +38,27 @@ router.get("/organizations/:id", async (req: Request, res: Response) => {
         res.status(500).json({
             success: false,
             message: "Error retrieving organization from database",
+            error: process.env.NODE_ENV === "development" ? error : {},
+        });
+    }
+});
+
+// GET /organizations - Get all organizations from database
+router.get("/organizations", async (req: Request, res: Response) => {
+    try {
+        const organizations = await organizationService.getAllOrganizations();
+
+        res.status(200).json({
+            success: true,
+            message: "Organizations retrieved successfully",
+            data: organizations,
+            count: organizations.length,
+        });
+    } catch (error) {
+        console.error("Error fetching organizations:", error);
+        res.status(500).json({
+            success: false,
+            message: "Error retrieving organizations from database",
             error: process.env.NODE_ENV === "development" ? error : {},
         });
     }
