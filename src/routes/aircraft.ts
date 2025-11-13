@@ -44,7 +44,10 @@ router.get("/aircraft/:id",
 });
 
 // GET /aircraft - Get all aircraft from database
-router.get("/aircraft", async (req: Request, res: Response) => {
+router.get("/aircraft",
+    validateAircraftId,
+    validateRequest,
+    async (req: Request, res: Response) => {
     try {
         const aircraft = await aircraftService.getAllAircraft();
         
