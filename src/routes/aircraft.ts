@@ -45,7 +45,6 @@ router.get("/aircraft/:id",
 
 // GET /aircraft - Get all aircraft from database
 router.get("/aircraft",
-    validateAircraftId,
     validateRequest,
     async (req: Request, res: Response) => {
     try {
