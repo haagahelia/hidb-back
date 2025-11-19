@@ -1,8 +1,5 @@
 import type { Knex } from "knex";
 
-// Load environment variables
-require('dotenv').config();
-
 const config: Knex.Config = {
   client: "mysql2",
   connection: {
@@ -12,10 +9,7 @@ const config: Knex.Config = {
     password: process.env.MARIADB_PASSWORD || "",
     database: process.env.MARIADB_DATABASE || "casedb",
   },
-  pool: { 
-    min: Number(process.env.DB_CONNECTION_POOL_MIN) || 0, 
-    max: Number(process.env.DB_CONNECTION_POOL_MAX) || 7 
-  },
+  pool: { min: 0, max: 7 },
   migrations: { tableName: "migrations" },
 };
 
