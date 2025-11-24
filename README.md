@@ -12,6 +12,7 @@ Short guide to start the backend and initialize the MariaDB database using Docke
 - [Start Backend](#start-backend)
 - [Project Structure](#project-structure)
 - [API Endpoints](#api-endpoints)
+- [Resources](#resources)
 
 ## Deployment Link
 
@@ -162,3 +163,11 @@ The following API endpoints are available:
 - ID validation for aircraft endpoints (positive integers only)
 - Structured error responses
 - TypeScript support throughout
+
+## Resources
+
+See [RESOURCES.md](RESOURCES.md) for aviation museum resources including:
+- Aircraft specifications and historical data
+- Media assets (images, audio, video)
+- External links and references
+- Development resources and documentation
