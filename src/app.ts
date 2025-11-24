@@ -7,9 +7,12 @@ import helloRoute from "./routes/hello";
 import aircraftRoute from "./routes/aircraft";
 import organizationRoute from "./routes/organization";
 
+var cors = require('cors')
+
 const app: Application = express();
 
 app.use(express.json());
+app.use(cors()); 
 
 app.use("/", indexRoute);
 app.use("/hello", helloRoute);
