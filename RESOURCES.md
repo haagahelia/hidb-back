@@ -3,6 +3,7 @@
 This document contains links, references, and resources related to the aviation museum project.
 
 ## Table of Contents
+
 - [Aircraft Resources](#aircraft-resources)
 - [Media Assets](#media-assets)
 - [External Links](#external-links)
@@ -12,12 +13,14 @@ This document contains links, references, and resources related to the aviation 
 ## Aircraft Resources
 
 ### Historical Aircraft Data
+
 - **Junkers A50 Junior**: German two-seat trainer aircraft (1929)
   - Manufacturer: Junkers Flugzeugwerke AG
   - Type: General aviation trainer
   - Status: Museum exhibit
 
 ### Aviation Organizations
+
 - **NASA**: National Aeronautics and Space Administration
 - **Boeing**: Commercial aircraft manufacturer
 - **Airbus**: European commercial aircraft manufacturer
@@ -26,27 +29,29 @@ This document contains links, references, and resources related to the aviation 
 ## Media Assets
 
 ### Images
-- **Finnish Aviation Museum (Finnia.fi)**: Primary source for aircraft photos
-  - A320 photos: https://finna.fi/Record/elka.143410808738800_158684673005400?sid=5184639845
-  - Junkers A50 Junior: https://finna.fi/Record/sim.M016-10085
+
+- **Finnish Aviation Museum**: Primary source for aircraft photos: URL: https://finna.fi/
 
 ### Audio Files
-- *[Add audio resources here]*
 
-### Video Files
-- *[Add video resources here]*
+- **Finnish Aviation Museum Audio Guide (Finnish)**: https://ilmailumuseo.fi/aaniopastus/
+- **Finnish Aviation Museum Audio Guide (English)**: https://ilmailumuseo.fi/en/audioguide/
 
 ## External Links
 
 ### Aviation Museums
+
 - **Finnish Aviation Museum**: https://www.ilmailumuseo.fi/
 - **National Air and Space Museum**: https://airandspace.si.edu/
 
 ### Aviation Databases
+
 - **FinnA (Finnish National Gallery)**: https://finna.fi/
 - **Wikipedia - Aviation**: https://en.wikipedia.org/wiki/Aviation
+- **Wikipedia - QR Code**: https://en.wikipedia.org/wiki/QR_code
 
 ### Development Resources
+
 - **Express.js Documentation**: https://expressjs.com/
 - **TypeScript Handbook**: https://www.typescriptlang.org/docs/
 - **MariaDB Documentation**: https://mariadb.com/kb/en/documentation/
@@ -54,34 +59,17 @@ This document contains links, references, and resources related to the aviation 
 ## Documentation
 
 ### Project Documentation
+
 - **API Endpoints**: See README.md for available endpoints
-- **Database Schema**: See database/SQL-scripts/01__create_tables.sql
+- **Database Schema**: See database/SQL-scripts/01\_\_create_tables.sql
 - **Validation Rules**: See src/validationHandler/
 
 ### Aviation References
+
 - **Aircraft specifications**
 - **Historical context**
 - **Technical details**
 
-## Adding New Resources
-
-When adding new resources to this document:
-
-1. **Categorize properly**: Add to the appropriate section
-2. **Include metadata**: Source, date, creator when available
-3. **Verify links**: Ensure external links are working
-4. **Update database**: If adding aircraft/media, update the database scripts
-
-### Template for new entries:
-
-```
-### Aircraft Name
-- **Description**: Brief description
-- **Source**: Where the information came from
-- **Media**: Links to related images/videos
-- **Additional Notes**: Any relevant details
-```
-
 ---
 
-*Last updated: November 24, 2025*
+_Last updated: November 24, 2025_
