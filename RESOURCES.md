@@ -10,22 +10,6 @@ This document contains links, references, and resources related to the aviation 
 - [Documentation](#documentation)
 - [Development Resources](#development-resources)
 
-## Aircraft Resources
-
-### Historical Aircraft Data
-
-- **Junkers A50 Junior**: German two-seat trainer aircraft (1929)
-  - Manufacturer: Junkers Flugzeugwerke AG
-  - Type: General aviation trainer
-  - Status: Museum exhibit
-
-### Aviation Organizations
-
-- **NASA**: National Aeronautics and Space Administration
-- **Boeing**: Commercial aircraft manufacturer
-- **Airbus**: European commercial aircraft manufacturer
-- **Junkers**: Historical German aircraft manufacturer (1895-1969)
-
 ## Media Assets
 
 ### Images
@@ -54,6 +38,9 @@ This document contains links, references, and resources related to the aviation 
 
 - **Express.js Documentation**: https://expressjs.com/
 - **TypeScript Handbook**: https://www.typescriptlang.org/docs/
+- **Knex.js Guide**: https://knexjs.org/guide/
+- **Knex.js TypeScript**: https://knexjs.org/guide/#typescript
+- **Knex.js with MySQL & TypeScript**: https://medium.com/@aashishdhiman88/knex-js-setup-with-mysql-and-typescript-17f35d592c38
 - **MariaDB Documentation**: https://mariadb.com/kb/en/documentation/
 
 ## Documentation
