@@ -51,12 +51,6 @@ This document contains links, references, and resources related to the aviation 
 - **Database Schema**: See database/SQL-scripts/01\_\_create_tables.sql
 - **Validation Rules**: See src/validationHandler/
 
-### Aviation References
-
-- **Aircraft specifications**
-- **Historical context**
-- **Technical details**
-
 ---
 
 _Last updated: November 24, 2025_

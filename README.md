@@ -8,6 +8,7 @@ Short guide to start the backend and initialize the MariaDB database using Docke
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Initialize Database](#initialize-database)
+- [Database Documentation](#database-documentation)
 - [Start Database](#start-database)
 - [Start Backend](#start-backend)
 - [Project Structure](#project-structure)
@@ -92,6 +93,19 @@ docker compose -f docker-compose-db.yaml logs -f mariadb_service
 - `000__CreateALLdb.sql` - Auto-generated combined script (used by Docker)
 - `a_concatenate_needed_db_scripts.sh` - Script to combine SQL files
 
+## Database Documentation
+
+For detailed database schema information, relationships, data types, and sample data, see [DATABASE.md](DATABASE.md).
+
+This includes:
+
+- Complete table schemas with constraints
+- Entity Relationship Diagrams (ERD)
+- Foreign key relationships
+- ENUM value definitions
+- Sample data examples
+- Maintenance and performance notes
+
 ## Start Database
 
 To start the database after it has been initialized, run the following command:
@@ -167,6 +181,7 @@ The following API endpoints are available:
 ## Resources
 
 See [RESOURCES.md](RESOURCES.md) for aviation museum resources including:
+
 - Aircraft specifications and historical data
 - Media assets (images, audio, video)
 - External links and references
