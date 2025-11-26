@@ -6,6 +6,7 @@ import indexRoute from "./routes/index";
 import helloRoute from "./routes/hello";
 import aircraftRoute from "./routes/aircraft";
 import organizationRoute from "./routes/organization";
+import mediaRoute from "./routes/media";
 
 var cors = require('cors')
 
@@ -18,5 +19,6 @@ app.use("/", indexRoute);
 app.use("/hello", helloRoute);
 app.use("/api", aircraftRoute);
 app.use("/api", organizationRoute);
+app.use("/api", mediaRoute);
 
 export default app;
