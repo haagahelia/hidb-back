@@ -1,10 +1,9 @@
-USE casedb; 
+
 
 /* INSERTS */
 
 /* --- Insert: Organization --- */
 INSERT INTO Organization (
-    id,
     name,
     type,
     country,
@@ -15,7 +14,6 @@ INSERT INTO Organization (
 ) VALUES
 -- 1. Finnish Air Force
 (
-    1,
     'Finnish Air Force',
     'military',
     'Finland',
@@ -27,7 +25,6 @@ INSERT INTO Organization (
 
 -- 2. Finnair (Aero O/Y)
 (
-    2,
     'Finnair (Aero O/Y)',
     'airline',
     'Finland',
@@ -39,7 +36,6 @@ INSERT INTO Organization (
 
 -- 3. Soviet Air Forces
 (
-    3,
     'Soviet Air Forces',
     'military',
     'Soviet Union',
@@ -51,7 +47,6 @@ INSERT INTO Organization (
 
 -- 4. Royal Air Force
 (
-    4,
     'Royal Air Force',
     'military',
     'United Kingdom',
@@ -63,7 +58,6 @@ INSERT INTO Organization (
 
 -- 5. Luftwaffe
 (
-    5,
     'Luftwaffe',
     'military',
     'Germany',
@@ -73,10 +67,23 @@ INSERT INTO Organization (
     'Reformed in 1935, the Luftwaffe became one of the most technologically advanced air forces of its time. Despite early success, it was eventually overcome by Allied air superiority.'
 );
 
+/* --- Insert: Media --- */
+INSERT INTO Media (
+    media_type,
+    is_thumbnail,
+    url,
+    caption,
+    date_taken,
+    creator,
+    is_historical
+) VALUES
+    ('photo', TRUE, 'https://finna.fi/Record/elka.143410808738800_158684673005400?sid=5184639845', 'Airbus A320 lentokone (1987)', '1987-01-01 00:00:00', 'INP/Lufthansa', FALSE),
+    ('photo', FALSE, 'https://finna.fi/Record/sim.M016-39913?sid=5184639845', 'Finnairin Airbus A320-200 Helsinki-Vantaan lentoasemalla elokuussa 2017', '2017-08-01 00:00:00', 'Juutinen, Tapio', TRUE),
+    ('photo', TRUE, 'https://finna.fi/Record/sim.M016-10085', 'Junkers A 50 Junior on display in the airport terminal in 1977', '1977-05-16 00:00:00', 'Hielm. Börje', TRUE),
+    ('photo', FALSE, 'https://finna.fi/Record/sim.M016-35349', 'Junkers A50 Junior OH-ABB and Santa Claus', '1981-01-01 00:00:00', 'Wikman. Matti', TRUE);
 
 /* --- Insert: Aircraft --- */
 INSERT INTO Aircraft (
-    id,
     name,
     manufacturer,
     model,
@@ -91,7 +98,7 @@ INSERT INTO Aircraft (
     qr_code_url,
     description,
     status,
-    image,
+    media_id,
     specifications,
     history,
     importance,
@@ -101,7 +108,6 @@ INSERT INTO Aircraft (
 -- 1. Airbus A320 (Finnair)
 -- -------------------------------------------------------------
 (
-    1,
     'Airbus A320',
     'Airbus',
     'A320-200',
@@ -111,12 +117,12 @@ INSERT INTO Aircraft (
     2,
     150,
     'commercial',
-    12,
-    'Commercial Aviation Hall',
-    'https://museum.example.com/aircraft/1',
+   NULL,
+   NULL,
+    NULL,
     'One of the world’s most successful short- to medium-haul commercial airliners, widely used by Finnair for European routes.',
     'on display',
-    'https://museum.example.com/images/a320.jpg',
+   1,
     JSON_OBJECT(
         'length', '37.57 m',
         'wingspan', '34.10 m',
@@ -136,48 +142,9 @@ INSERT INTO Aircraft (
 ),
 
 -- -------------------------------------------------------------
--- 2. Junkers Ju 52 (Finnish Air Force)
--- -------------------------------------------------------------
-(
-    2,
-    'Junkers Ju 52',
-    'Junkers',
-    'Ju 52/3m',
-    1939,
-    10400.00,
-    1,
-    3,
-    17,
-    'military',
-    21,
-    'WWII Exhibit',
-    'https://museum.example.com/aircraft/2',
-    'A classic tri-motor German transport aircraft used by the Finnish Air Force during WWII.',
-    'in storage',
-    'https://museum.example.com/images/ju52.jpg',
-    JSON_OBJECT(
-        'length', '18.9 m',
-        'wingspan', '29.25 m',
-        'height', '4.5 m',
-        'maxSpeed', '265 km/h',
-        'range', '870 km',
-        'engine', '3 × BMW 132 radial engines',
-        'armament', '7.92 mm machine guns (varied configurations)'
-    ),
-    'Used extensively by the Finnish Air Force for transport and paratrooper operations during the Winter and Continuation Wars.',
-    'Important for wartime logistics and troop movement in challenging Arctic conditions.',
-    JSON_ARRAY(
-        'Nicknamed “Tante Ju” (“Auntie Ju”).',
-        'Despite its age, several Ju 52s remain airworthy.',
-        'Built with corrugated metal skin for durability.'
-    )
-),
-
--- -------------------------------------------------------------
 -- 3. MiG-21Bis (Soviet Air Forces)
 -- -------------------------------------------------------------
 (
-    3,
     'MiG-21Bis',
     'Mikoyan-Gurevich',
     'MiG-21Bis',
@@ -187,12 +154,12 @@ INSERT INTO Aircraft (
     1,
     0,
     'military',
-    33,
-    'Cold War Wing',
-    'https://museum.example.com/aircraft/3',
+    NULL,
+    NULL,
+    NULL,
     'A supersonic Soviet fighter used by both the Soviet Air Forces and later the Finnish Air Force.',
     'on display',
-    'https://museum.example.com/images/mig21.jpg',
+    3,
     JSON_OBJECT(
         'length', '15.76 m',
         'wingspan', '7.15 m',
@@ -215,7 +182,6 @@ INSERT INTO Aircraft (
 -- 4. Junkers A50 Junior (Royal Air Force)
 -- -------------------------------------------------------------
 (
-    4,
     'Junkers A50 Junior',
     'Junkers',
     'A50',
@@ -225,12 +191,12 @@ INSERT INTO Aircraft (
     1,
     1,
     'general aviation',
-    5,
-    'Pioneer Aircraft Gallery',
-    'https://museum.example.com/aircraft/4',
+    NULL,
+    NULL,
+    NULL,
     'A lightweight sports aircraft known for long-distance record flights in the early 1930s.',
     'on display',
-    'https://museum.example.com/images/a50.jpg',
+    4,
     JSON_OBJECT(
         'length', '6.8 m',
         'wingspan', '10.5 m',
@@ -247,24 +213,8 @@ INSERT INTO Aircraft (
         'Features corrugated metal construction.',
         'Very popular with early aviation sporting clubs.'
     )
-),
+); 
 
-
-/* --- Insert: Media --- */
-INSERT INTO Media (
-    aircraft_id,
-    media_type,
-    is_thumbnail,
-    url,
-    caption,
-    date_taken,
-    creator,
-    is_historical
-) VALUES
-    (1, 'photo', TRUE, 'https://finna.fi/Record/elka.143410808738800_158684673005400?sid=5184639845', 'Airbus A320 lentokone (1987)', '1987-01-01 00:00:00', 'INP/Lufthansa', FALSE),
-    (1, 'photo', FALSE, 'https://finna.fi/Record/sim.M016-39913?sid=5184639845', 'Finnairin Airbus A320-200 Helsinki-Vantaan lentoasemalla elokuussa 2017', '2017-08-01 00:00:00', 'Juutinen, Tapio', TRUE),
-    (4, 'photo', TRUE, 'https://finna.fi/Record/sim.M016-10085', 'Junkers A 50 Junior on display in the airport terminal in 1977', '1977-05-16 00:00:00', 'Hielm. Börje', TRUE),
-    (4, 'photo', FALSE, 'https://finna.fi/Record/sim.M016-35349', 'Junkers A50 Junior OH-ABB and Santa Claus', '1981-01-01 00:00:00', 'Wikman. Matti', TRUE);
 
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */

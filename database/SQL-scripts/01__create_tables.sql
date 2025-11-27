@@ -1,4 +1,4 @@
-USE casedb; 
+
 /* --- 01 CREATE TABLES --- */
 
 CREATE TABLE IF NOT EXISTS Organization (
@@ -19,7 +19,27 @@ CREATE TABLE IF NOT EXISTS Organization (
     history       TEXT           NOT NULL,
     PRIMARY KEY (id)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = latin1;
+  DEFAULT CHARSET = utf8mb4;
+
+  CREATE TABLE IF NOT EXISTS Media (
+    id           INT            NOT NULL AUTO_INCREMENT,
+    
+    media_type   ENUM(
+                   'photo',
+                   'video',
+                   '3d model',
+                   'audio',
+                   'other'
+                 )              NOT NULL,
+    is_thumbnail BOOLEAN        NOT NULL DEFAULT FALSE,
+    url          VARCHAR(255)   NOT NULL,
+    caption      TEXT           NULL,
+    date_taken   DATETIME       NULL,
+    creator      VARCHAR(255)   NULL,
+    is_historical BOOLEAN       NULL DEFAULT FALSE,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS Aircraft (
     id                   INT            NOT NULL AUTO_INCREMENT,
@@ -50,36 +70,18 @@ CREATE TABLE IF NOT EXISTS Aircraft (
                            'loaned',
                            'decommissioned'
                          )              NOT NULL DEFAULT 'in storage',
-    image            VARCHAR(255)   NULL,
+    media_id            INT           NULL,
     specifications      JSON           NULL,
     history              TEXT           NULL,
     importance           TEXT           NULL,
     fun_facts           JSON          NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (organization_id) REFERENCES Organization(id) ON DELETE SET NULL
+    FOREIGN KEY (organization_id) REFERENCES Organization(id) ON DELETE SET NULL, 
+    FOREIGN KEY (media_id) REFERENCES Media(id) ON DELETE SET NULL
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = latin1;
+  DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE IF NOT EXISTS Media (
-    id           INT            NOT NULL AUTO_INCREMENT,
-    aircraft_id  INT            NULL,
-    media_type   ENUM(
-                   'photo',
-                   'video',
-                   '3d model',
-                   'audio',
-                   'other'
-                 )              NOT NULL,
-    is_thumbnail BOOLEAN        NOT NULL DEFAULT FALSE,
-    url          VARCHAR(255)   NOT NULL,
-    caption      TEXT           NULL,
-    date_taken   DATETIME       NULL,
-    creator      VARCHAR(255)   NULL,
-    is_historical BOOLEAN       NULL DEFAULT FALSE,
-    PRIMARY KEY (id),
-    FOREIGN KEY (aircraft_id) REFERENCES Aircraft(id) ON DELETE CASCADE
-) ENGINE = InnoDB
-  DEFAULT CHARSET = latin1;
+
 
 
 /* ---------------------------------------------------------- */
