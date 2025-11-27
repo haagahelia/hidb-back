@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS Organization (
     country       VARCHAR(255)   NOT NULL,
     founding_year YEAR           NULL,
     logo_url      VARCHAR(255)   NULL,
+    description   TEXT           NOT NULL,
+    history       TEXT           NOT NULL,
     PRIMARY KEY (id)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = latin1;
@@ -48,6 +50,11 @@ CREATE TABLE IF NOT EXISTS Aircraft (
                            'loaned',
                            'decommissioned'
                          )              NOT NULL DEFAULT 'in storage',
+    image            VARCHAR(255)   NULL,
+    specifications      JSON           NULL,
+    history              TEXT           NULL,
+    importance           TEXT           NULL,
+    fun_facts           JSON          NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (organization_id) REFERENCES Organization(id) ON DELETE SET NULL
 ) ENGINE = InnoDB
