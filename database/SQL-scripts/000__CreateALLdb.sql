@@ -137,10 +137,10 @@ INSERT INTO Media (
     creator,
     is_historical
 ) VALUES
-    (1, 'photo', TRUE, 'https://finna.fi/Record/elka.143410808738800_158684673005400?sid=5184639845', 'Airbus A320 lentokone (1987)', '1987-01-01 00:00:00', 'INP/Lufthansa', FALSE),
-    (1, 'photo', FALSE, 'https://finna.fi/Record/sim.M016-39913?sid=5184639845', 'Finnairin Airbus A320-200 Helsinki-Vantaan lentoasemalla elokuussa 2017', '2017-08-01 00:00:00', 'Juutinen, Tapio', TRUE),
-    (4, 'photo', TRUE, 'https://finna.fi/Record/sim.M016-10085', 'Junkers A 50 Junior on display in the airport terminal in 1977', '1977-05-16 00:00:00', 'Hielm. Börje', TRUE),
-    (4, 'photo', FALSE, 'https://finna.fi/Record/sim.M016-35349', 'Junkers A50 Junior OH-ABB and Santa Claus', '1981-01-01 00:00:00', 'Wikman. Matti', TRUE);
+    (1, 'photo', TRUE, 'https://finna.fi/Cover/Show?source=Solr&id=elka.143410808738800_158684673005400&index=0&size=large', 'Airbus A320 lentokone (1987)', '1987-01-01 00:00:00', 'INP/Lufthansa', FALSE),
+    (1, 'photo', FALSE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-39913&index=0&size=large', 'Finnairin Airbus A320-200 Helsinki-Vantaan lentoasemalla elokuussa 2017', '2017-08-01 00:00:00', 'Juutinen, Tapio', TRUE),
+    (4, 'photo', TRUE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-10085&index=0&size=large', 'Junkers A 50 Junior on display in the airport terminal in 1977', '1977-05-16 00:00:00', 'Hielm. Börje', TRUE),
+    (4, 'photo', FALSE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-35349&index=0&size=large', 'Junkers A50 Junior OH-ABB and Santa Claus', '1981-01-01 00:00:00', 'Wikman. Matti', TRUE);
 
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */

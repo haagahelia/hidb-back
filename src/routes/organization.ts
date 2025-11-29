@@ -5,7 +5,7 @@ import { validateRequest } from "../validationHandler";
 
 const router = Router();
 // GET /organizations/:id - Get specific organization by ID
-router.get("/organizations/:id",
+router.get("/organization/:id",
     validateOrganizationId,
     validateRequest,
     async (req: Request, res: Response) => {
@@ -44,7 +44,7 @@ router.get("/organizations/:id",
 });
 
 // GET /organizations - Get all organizations from database
-router.get("/organizations", async (req: Request, res: Response) => {
+router.get("/organization", async (req: Request, res: Response) => {
     try {
         const organizations = await organizationService.getAllOrganizations();
 
