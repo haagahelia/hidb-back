@@ -55,6 +55,12 @@ https://hidb-back-git-sdp-2-aviation-museum.2.rahtiapp.fi
         DB_HOST=localhost
         DB_PORT=3306
         BE_SERVER_PORT=4678
+
+        # test.env
+        NODE_ENV=test
+
+        # Integration Tests Flag
+        RUN_INTEGRATION_TESTS=false
 ```
 
 ## Initialize Database
