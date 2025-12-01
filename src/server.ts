@@ -9,5 +9,7 @@ app.listen(PORT, () => {
     console.log(`   - GET http://localhost:${PORT}/api/aircraft/:id`);
     console.log(`   - GET http://localhost:${PORT}/api/organizations`);
     console.log(`   - GET http://localhost:${PORT}/api/organizations/:id`);
+    console.log(`   - GET http://localhost:${PORT}/api/media`);
+    console.log(`   - GET http://localhost:${PORT}/api/media/:id`);
 
 });

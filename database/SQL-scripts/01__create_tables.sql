@@ -1,4 +1,4 @@
-USE casedb; 
+
 /* --- 01 CREATE TABLES --- */
 
 CREATE TABLE IF NOT EXISTS Organization (
@@ -15,9 +15,11 @@ CREATE TABLE IF NOT EXISTS Organization (
     country       VARCHAR(255)   NOT NULL,
     founding_year YEAR           NULL,
     logo_url      VARCHAR(255)   NULL,
+    description   TEXT           NOT NULL,
+    history       TEXT           NOT NULL,
     PRIMARY KEY (id)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = latin1;
+  DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS Aircraft (
     id                   INT            NOT NULL AUTO_INCREMENT,
@@ -48,12 +50,16 @@ CREATE TABLE IF NOT EXISTS Aircraft (
                            'loaned',
                            'decommissioned'
                          )              NOT NULL DEFAULT 'in storage',
+    specifications      JSON           NULL,
+    history              TEXT           NULL,
+    importance           TEXT           NULL,
+    fun_facts           JSON          NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (organization_id) REFERENCES Organization(id) ON DELETE SET NULL
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = latin1;
+  DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE IF NOT EXISTS Media (
+    CREATE TABLE IF NOT EXISTS Media (
     id           INT            NOT NULL AUTO_INCREMENT,
     aircraft_id  INT            NULL,
     media_type   ENUM(
@@ -69,10 +75,12 @@ CREATE TABLE IF NOT EXISTS Media (
     date_taken   DATETIME       NULL,
     creator      VARCHAR(255)   NULL,
     is_historical BOOLEAN       NULL DEFAULT FALSE,
-    PRIMARY KEY (id),
+    PRIMARY KEY (id), 
     FOREIGN KEY (aircraft_id) REFERENCES Aircraft(id) ON DELETE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = latin1;
+  DEFAULT CHARSET = utf8mb4;
+
+
 
 
 /* ---------------------------------------------------------- */
