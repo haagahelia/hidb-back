@@ -9,7 +9,6 @@ FROM node:20-alpine AS runtime
 WORKDIR /app
 COPY --from=build /app/package*.json ./
 COPY --from=build /app/dist ./dist
-RUN npm ci --only=production
+RUN npm install --only=production
 EXPOSE 3000
 CMD ["node", "dist/server.js"]
- 
