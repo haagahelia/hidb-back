@@ -29,26 +29,6 @@ CREATE TABLE IF NOT EXISTS Organization (
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
 
-  CREATE TABLE IF NOT EXISTS Media (
-    id           INT            NOT NULL AUTO_INCREMENT,
-    
-    media_type   ENUM(
-                   'photo',
-                   'video',
-                   '3d model',
-                   'audio',
-                   'other'
-                 )              NOT NULL,
-    is_thumbnail BOOLEAN        NOT NULL DEFAULT FALSE,
-    url          VARCHAR(255)   NOT NULL,
-    caption      TEXT           NULL,
-    date_taken   DATETIME       NULL,
-    creator      VARCHAR(255)   NULL,
-    is_historical BOOLEAN       NULL DEFAULT FALSE,
-    PRIMARY KEY (id)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4;
-
 CREATE TABLE IF NOT EXISTS Aircraft (
     id                   INT            NOT NULL AUTO_INCREMENT,
     name                 VARCHAR(255)   NOT NULL,
@@ -78,14 +58,33 @@ CREATE TABLE IF NOT EXISTS Aircraft (
                            'loaned',
                            'decommissioned'
                          )              NOT NULL DEFAULT 'in storage',
-    media_id            INT           NULL,
     specifications      JSON           NULL,
     history              TEXT           NULL,
     importance           TEXT           NULL,
     fun_facts           JSON          NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (organization_id) REFERENCES Organization(id) ON DELETE SET NULL, 
-    FOREIGN KEY (media_id) REFERENCES Media(id) ON DELETE SET NULL
+    FOREIGN KEY (organization_id) REFERENCES Organization(id) ON DELETE SET NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+    CREATE TABLE IF NOT EXISTS Media (
+    id           INT            NOT NULL AUTO_INCREMENT,
+    aircraft_id  INT            NULL,
+    media_type   ENUM(
+                   'photo',
+                   'video',
+                   '3d model',
+                   'audio',
+                   'other'
+                 )              NOT NULL,
+    is_thumbnail BOOLEAN        NOT NULL DEFAULT FALSE,
+    url          VARCHAR(255)   NOT NULL,
+    caption      TEXT           NULL,
+    date_taken   DATETIME       NULL,
+    creator      VARCHAR(255)   NULL,
+    is_historical BOOLEAN       NULL DEFAULT FALSE,
+    PRIMARY KEY (id), 
+    FOREIGN KEY (aircraft_id) REFERENCES Aircraft(id) ON DELETE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
 
@@ -165,21 +164,6 @@ INSERT INTO Organization (
     'Reformed in 1935, the Luftwaffe became one of the most technologically advanced air forces of its time. Despite early success, it was eventually overcome by Allied air superiority.'
 );
 
-/* --- Insert: Media --- */
-INSERT INTO Media (
-    media_type,
-    is_thumbnail,
-    url,
-    caption,
-    date_taken,
-    creator,
-    is_historical
-) VALUES
-    ('photo', TRUE, 'https://finna.fi/Cover/Show?source=Solr&id=elka.143410808738800_158684673005400&index=0&size=large', 'Airbus A320 lentokone (1987)', '1987-01-01 00:00:00', 'INP/Lufthansa', FALSE),
-    ('photo', FALSE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-39913&index=0&size=large', 'Finnairin Airbus A320-200 Helsinki-Vantaan lentoasemalla elokuussa 2017', '2017-08-01 00:00:00', 'Juutinen, Tapio', TRUE),
-    ('photo', TRUE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-10085&index=0&size=large', 'Junkers A 50 Junior on display in the airport terminal in 1977', '1977-05-16 00:00:00', 'Hielm. Börje', TRUE),
-    ('photo', FALSE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-35349&index=0&size=large', 'Junkers A50 Junior OH-ABB and Santa Claus', '1981-01-01 00:00:00', 'Wikman. Matti', TRUE);
-
 /* --- Insert: Aircraft --- */
 INSERT INTO Aircraft (
     name,
@@ -196,7 +180,6 @@ INSERT INTO Aircraft (
     qr_code_url,
     description,
     status,
-    media_id,
     specifications,
     history,
     importance,
@@ -215,12 +198,11 @@ INSERT INTO Aircraft (
     2,
     150,
     'commercial',
-   NULL,
-   NULL,
+    NULL,
+    NULL,
     NULL,
     'One of the world’s most successful short- to medium-haul commercial airliners, widely used by Finnair for European routes.',
     'on display',
-   1,
     JSON_OBJECT(
         'length', '37.57 m',
         'wingspan', '34.10 m',
@@ -240,7 +222,7 @@ INSERT INTO Aircraft (
 ),
 
 -- -------------------------------------------------------------
--- 3. MiG-21Bis (Soviet Air Forces)
+-- 2. MiG-21Bis (Soviet Air Forces)
 -- -------------------------------------------------------------
 (
     'MiG-21Bis',
@@ -257,7 +239,6 @@ INSERT INTO Aircraft (
     NULL,
     'A supersonic Soviet fighter used by both the Soviet Air Forces and later the Finnish Air Force.',
     'on display',
-    3,
     JSON_OBJECT(
         'length', '15.76 m',
         'wingspan', '7.15 m',
@@ -277,7 +258,7 @@ INSERT INTO Aircraft (
 ),
 
 -- -------------------------------------------------------------
--- 4. Junkers A50 Junior (Royal Air Force)
+-- 3. Junkers A50 Junior (Royal Air Force)
 -- -------------------------------------------------------------
 (
     'Junkers A50 Junior',
@@ -294,7 +275,6 @@ INSERT INTO Aircraft (
     NULL,
     'A lightweight sports aircraft known for long-distance record flights in the early 1930s.',
     'on display',
-    4,
     JSON_OBJECT(
         'length', '6.8 m',
         'wingspan', '10.5 m',
@@ -313,6 +293,21 @@ INSERT INTO Aircraft (
     )
 ); 
 
+/* --- Insert: Media --- */
+INSERT INTO Media (
+    aircraft_id,
+    media_type,
+    is_thumbnail,
+    url,
+    caption,
+    date_taken,
+    creator,
+    is_historical
+) VALUES
+    (2,'photo', TRUE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-10994&index=0&size=large', 'MiG-21BIS -torjuntahävittäjä ilmassa maaliskuussa 1995', '1995-01-03 00:00:00', 'LauLaukkanen, Jyrki,', FALSE),
+    (1,'photo', TRUE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-39913&index=0&size=large', 'Finnairin Airbus A320-200 Helsinki-Vantaan lentoasemalla elokuussa 2017', '2017-08-01 00:00:00', 'Juutinen, Tapio', TRUE),
+    (3,'photo', TRUE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-10085&index=0&size=large', 'Junkers A 50 Junior on display in the airport terminal in 1977', '1977-05-16 00:00:00', 'Hielm. Börje', TRUE),
+    (3,'photo', FALSE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-35349&index=0&size=large', 'Junkers A50 Junior OH-ABB and Santa Claus', '1981-01-01 00:00:00', 'Wikman. Matti', TRUE);
 
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
