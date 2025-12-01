@@ -18,6 +18,9 @@ Short guide to start the backend and initialize the MariaDB database using Docke
 ## Deployment Link
 
 https://hidb-back-git-sdp-2-aviation-museum.2.rahtiapp.fi
+- Deplyoment instructions
+  [Deployment_instruction.pdf](https://github.com/user-attachments/files/23835207/Deployment_instruction.pdf)
+  
 
 ## Prerequisites
 
