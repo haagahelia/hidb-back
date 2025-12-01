@@ -115,7 +115,7 @@ INSERT INTO Organization (
     'military',
     'Finland',
     1918,
-    NULL,
+    'https://api.finna.fi/Cover/Show?source=Solr&id=museovirasto.3FE4646EE1D7CFE46CC85DBD4B94FDD3&index=0&size=large',
     'The Finnish Air Force is one of the oldest independent air forces in the world, having gained independence alongside Finland in 1918.',
     'Founded on March 6, 1918, the Finnish Air Force has played a crucial role in defending Finnish sovereignty through the Winter War, Continuation War, and throughout the Cold War era. Known for achieving exceptional kill ratios with limited resources.'
 ),
@@ -126,7 +126,7 @@ INSERT INTO Organization (
     'airline',
     'Finland',
     1923,
-    NULL,
+    'https://api.finna.fi/Cover/Show?source=Solr&id=sim.M016-28446&index=0&size=large',
     'Finland''s flagship airline and one of the world''s oldest continuously operating airlines.',
     'Founded as Aero O/Y in 1923, Finnair has connected Finland to the world for over 100 years. The airline pioneered Arctic routes and became known for its reliability and safety record.'
 ),
