@@ -1,4 +1,102 @@
+USE casedb;
 
+DROP TABLE IF EXISTS Organization;
+DROP TABLE IF EXISTS Media;
+DROP TABLE IF EXISTS Aircraft;
+
+/* ---------------------------------------------------------- */
+/* --- 00 DROP TABLES --------------------------------------- */
+/* ---------------------------------------------------------- */
+/* --- 01 CREATE TABLES --- */
+
+CREATE TABLE IF NOT EXISTS Organization (
+    id            INT            NOT NULL AUTO_INCREMENT,
+    name          VARCHAR(255)   NOT NULL,
+    type          ENUM(
+                    'airline',
+                    'military',
+                    'border_guard',
+                    'postal_service',
+                    'commercial',
+                    'other'
+                  )              NOT NULL,
+    country       VARCHAR(255)   NOT NULL,
+    founding_year YEAR           NULL,
+    logo_url      VARCHAR(255)   NULL,
+    description   TEXT           NOT NULL,
+    history       TEXT           NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+  CREATE TABLE IF NOT EXISTS Media (
+    id           INT            NOT NULL AUTO_INCREMENT,
+    
+    media_type   ENUM(
+                   'photo',
+                   'video',
+                   '3d model',
+                   'audio',
+                   'other'
+                 )              NOT NULL,
+    is_thumbnail BOOLEAN        NOT NULL DEFAULT FALSE,
+    url          VARCHAR(255)   NOT NULL,
+    caption      TEXT           NULL,
+    date_taken   DATETIME       NULL,
+    creator      VARCHAR(255)   NULL,
+    is_historical BOOLEAN       NULL DEFAULT FALSE,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS Aircraft (
+    id                   INT            NOT NULL AUTO_INCREMENT,
+    name                 VARCHAR(255)   NOT NULL,
+    manufacturer         VARCHAR(255)   NOT NULL,
+    model                VARCHAR(255)   NOT NULL,
+    year_built           YEAR           NOT NULL,
+    weight               DECIMAL(10,2)  NOT NULL,
+    organization_id      INT            NULL,
+    crew_capacity        INT            NULL,
+    passenger_capacity   INT            NULL,
+    type                 ENUM(
+                           'military',
+                           'commercial',
+                           'general aviation',
+                           'cargo',
+                           'rotorcraft',
+                           'other'
+                         )              NOT NULL,
+    museum_location_number INT          NULL,
+    display_section      VARCHAR(255)   NULL,
+    qr_code_url          VARCHAR(255)   NULL,
+    description          TEXT           NULL,
+    status               ENUM(
+                           'on display',
+                           'in storage',
+                           'under restoration',
+                           'loaned',
+                           'decommissioned'
+                         )              NOT NULL DEFAULT 'in storage',
+    media_id            INT           NULL,
+    specifications      JSON           NULL,
+    history              TEXT           NULL,
+    importance           TEXT           NULL,
+    fun_facts           JSON          NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (organization_id) REFERENCES Organization(id) ON DELETE SET NULL, 
+    FOREIGN KEY (media_id) REFERENCES Media(id) ON DELETE SET NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+
+
+
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+/* -------------------------- END --------------------------- */
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
 
 /* INSERTS */
 
@@ -77,10 +175,10 @@ INSERT INTO Media (
     creator,
     is_historical
 ) VALUES
-    ('photo', TRUE, 'https://finna.fi/Cover/Show?source=Solr&id=elka.143410808738800_158684673005400&index=0&size=large', 'Airbus A320 lentokone (1987)', '1987-01-01 00:00:00', 'INP/Lufthansa', FALSE),
-    ('photo', FALSE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-39913&index=0&size=large', 'Finnairin Airbus A320-200 Helsinki-Vantaan lentoasemalla elokuussa 2017', '2017-08-01 00:00:00', 'Juutinen, Tapio', TRUE),
-    ('photo', TRUE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-10085&index=0&size=large', 'Junkers A 50 Junior on display in the airport terminal in 1977', '1977-05-16 00:00:00', 'Hielm. Börje', TRUE),
-    ('photo', FALSE, 'https://finna.fi/Cover/Show?source=Solr&id=sim.M016-35349&index=0&size=large', 'Junkers A50 Junior OH-ABB and Santa Claus', '1981-01-01 00:00:00', 'Wikman. Matti', TRUE);
+    ('photo', TRUE, 'https://finna.fi/Record/elka.143410808738800_158684673005400?sid=5184639845', 'Airbus A320 lentokone (1987)', '1987-01-01 00:00:00', 'INP/Lufthansa', FALSE),
+    ('photo', FALSE, 'https://finna.fi/Record/sim.M016-39913?sid=5184639845', 'Finnairin Airbus A320-200 Helsinki-Vantaan lentoasemalla elokuussa 2017', '2017-08-01 00:00:00', 'Juutinen, Tapio', TRUE),
+    ('photo', TRUE, 'https://finna.fi/Record/sim.M016-10085', 'Junkers A 50 Junior on display in the airport terminal in 1977', '1977-05-16 00:00:00', 'Hielm. Börje', TRUE),
+    ('photo', FALSE, 'https://finna.fi/Record/sim.M016-35349', 'Junkers A50 Junior OH-ABB and Santa Claus', '1981-01-01 00:00:00', 'Wikman. Matti', TRUE);
 
 /* --- Insert: Aircraft --- */
 INSERT INTO Aircraft (
@@ -117,8 +215,8 @@ INSERT INTO Aircraft (
     2,
     150,
     'commercial',
-    NULL,
-    NULL,
+   NULL,
+   NULL,
     NULL,
     'One of the world’s most successful short- to medium-haul commercial airliners, widely used by Finnair for European routes.',
     'on display',
@@ -138,6 +236,44 @@ INSERT INTO Aircraft (
         'First commercial airliner with fully digital fly-by-wire controls.',
         'Over 10,000 A320-family aircraft built.',
         'Finnair operated its first A320 in the early 1990s.'
+    )
+),
+
+-- -------------------------------------------------------------
+-- 2. Junkers Ju 52 (Finnish Air Force)
+-- -------------------------------------------------------------
+(
+    'Junkers Ju 52',
+    'Junkers',
+    'Ju 52/3m',
+    1939,
+    10400.00,
+    1,
+    3,
+    17,
+    'military',
+    21,
+    NULL,
+    NULL,
+    NULL,
+    'A classic tri-motor German transport aircraft used by the Finnish Air Force during WWII.',
+    'in storage',
+    2,
+    JSON_OBJECT(
+        'length', '18.9 m',
+        'wingspan', '29.25 m',
+        'height', '4.5 m',
+        'maxSpeed', '265 km/h',
+        'range', '870 km',
+        'engine', '3 × BMW 132 radial engines',
+        'armament', '7.92 mm machine guns (varied configurations)'
+    ),
+    'Used extensively by the Finnish Air Force for transport and paratrooper operations during the Winter and Continuation Wars.',
+    'Important for wartime logistics and troop movement in challenging Arctic conditions.',
+    JSON_ARRAY(
+        'Nicknamed “Tante Ju” (“Auntie Ju”).',
+        'Despite its age, several Ju 52s remain airworthy.',
+        'Built with corrugated metal skin for durability.'
     )
 ),
 
