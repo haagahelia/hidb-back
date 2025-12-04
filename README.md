@@ -13,6 +13,7 @@ Short guide to start the backend and initialize the MariaDB database using Docke
 - [Start Backend](#start-backend)
 - [Project Structure](#project-structure)
 - [API Endpoints](#api-endpoints)
+- [API Examples](#api-examples)
 - [Resources](#resources)
 
 ## Deployment Link
@@ -20,6 +21,10 @@ Short guide to start the backend and initialize the MariaDB database using Docke
 [https://hidb-back-git-sdp-2-aviation-museum.2.rahtiapp.fi](https://hidb-back-sdp-2-aviation-museum.2.rahtiapp.fi/api/aircraft)
 - Deplyoment instructions
   [Deployment_instruction.pdf](https://github.com/user-attachments/files/23835207/Deployment_instruction.pdf)
+  
+## Frontend Repo
+- This backend was made to serve the following frontend
+  [Frontend Repo](https://github.com/haagahelia/hidb-front)
   
 
 ## Prerequisites
@@ -100,7 +105,15 @@ docker compose -f docker-compose-db.yaml logs -f mariadb_service
 - `01__create_tables.sql` - Creates Organization, Aircraft, and Media tables
 - `02__insert_test_data.sql` - Inserts test data
 - `000__CreateALLdb.sql` - Auto-generated combined script (used by Docker)
-- `a_concatenate_needed_db_scripts.sh` - Script to combine SQL files
+- `a_concatenate_needed_db_scripts.sh` - Script to drop old tables and combine SQL files, prepare for a new fresh database
+
+If you need to update the database in the future, use `01__create_tables.sql` for creating tables scripts, and  `02__insert_test_data.sql` to insert test data. Then combine the 2 scripts using the command line: 
+```bash
+cd database/SQL-scripts
+#copy the script from `a_concatenate_needed_db_scripts.sh` and run it in the commandline
+rm -f 000__CreateALLdb.sql
+cat 00__drop_tables.sql 01__create_tables.sql 02__insert_test_data.sql > 000__CreateALLdb.sql
+```
 
 ## Database Documentation
 
@@ -125,7 +138,7 @@ To start the database after it has been initialized, run the following command:
 
 ## Start Backend
 
-- **Note:** The database must be running before starting the backend.
+- **Note:** The database on docker must be running before starting the backend.
 - To build and start the application, run:
 
 ```bash
@@ -177,8 +190,17 @@ The following API endpoints are available:
 - **GET /api/aircraft/:id**: Returns a specific aircraft by ID.
 - **GET /api/organizations**: Returns a list of all organizations.
 - **GET /api/organizations/:id**: Returns a specific organization by ID.
+- **GET /api/media**: Returns a list of all media.
+- **GET /api/media/:id**: Returns a specific media by ID.
 
 **Note:** Media API endpoints are not yet implemented (Media table exists in database but no routes created).
+## API Examples
+Get Aircraft by id 'http://localhost:4678/api/aircraft/1'
+<img width="1811" height="621" alt="Screenshot 2025-12-04 at 11 58 05" src="https://github.com/user-attachments/assets/d3638fe8-5d33-4e19-81db-e9992181ba24" />
+Get all medias 'http://localhost:4678/api/media'
+<img width="1813" height="806" alt="Screenshot 2025-12-04 at 11 58 21" src="https://github.com/user-attachments/assets/45e3740d-6187-4955-9cc2-cb917434abbc" />
+Get all organizations 'http://localhost:4678/api/organization'
+<img width="1814" height="910" alt="Screenshot 2025-12-04 at 11 58 34" src="https://github.com/user-attachments/assets/d49765a9-23e3-437c-98f2-61b6d749387c" />
 
 **API Features:**
 
