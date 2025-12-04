@@ -195,9 +195,11 @@ The following API endpoints are available:
 
 **Note:** Media API endpoints are not yet implemented (Media table exists in database but no routes created).
 ## API Examples
-<img width="1803" height="600" alt="Screenshot 2025-12-04 at 11 57 52" src="https://github.com/user-attachments/assets/2b060a38-4998-459b-8f33-0892f43f9586" />
+Get Aircraft by id 'http://localhost:4678/api/aircraft/1'
 <img width="1811" height="621" alt="Screenshot 2025-12-04 at 11 58 05" src="https://github.com/user-attachments/assets/d3638fe8-5d33-4e19-81db-e9992181ba24" />
+Get all medias 'http://localhost:4678/api/media'
 <img width="1813" height="806" alt="Screenshot 2025-12-04 at 11 58 21" src="https://github.com/user-attachments/assets/45e3740d-6187-4955-9cc2-cb917434abbc" />
+Get all organizations 'http://localhost:4678/api/organization'
 <img width="1814" height="910" alt="Screenshot 2025-12-04 at 11 58 34" src="https://github.com/user-attachments/assets/d49765a9-23e3-437c-98f2-61b6d749387c" />
 
 **API Features:**
